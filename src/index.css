@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playball&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default Font */
+body {
+  @apply bg-gray-100;
+  font-family: 'Poppins', sans-serif;
+}
+/* Hilangkan scrollbar di semua browser */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE dan Edge */
+  scrollbar-width: none;     /* Firefox */
+}
