@@ -1,0 +1,6 @@
+node_modules
+.env
+documentation/IMPLEMENTATION_SUMMARY.md
+documentation/CLOUDINARY_SETUP.md
+documentation/UPLOAD_API_SYSTEM_COMPLETE.md
+documentation/Postman_Collection.json
