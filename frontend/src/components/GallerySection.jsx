@@ -21,6 +21,17 @@ import imp1 from "../assets/imp1.jpg";
 import abs1 from "../assets/abs1.jpg";
 import eks1 from "../assets/eks1.jpg";
 
+// Painting popular fallback images
+import st1 from "../assets/st1.jpg";
+import st2 from "../assets/st2.jpg";
+import st3 from "../assets/st3.jpg";
+
+// Visual art fallback images
+import vis1 from "../assets/vis1.png";
+import vis2 from "../assets/vis2.png";
+import vis3 from "../assets/vis3.png";
+import vis4 from "../assets/vis4.png";
+
 export default function GallerySection() {
   const navigate = useNavigate();
   const [paintingIndex, setPaintingIndex] = useState(0);
@@ -66,14 +77,29 @@ export default function GallerySection() {
 
         // Fetch popular paintings (Street Art)
         const streetArtResponse = await getArtworksByCategory('Street Art', { limit: 3 });
-        if (streetArtResponse?.data) {
+        if (streetArtResponse?.data && streetArtResponse.data.length > 0) {
           setPopularPaintings(streetArtResponse.data);
+        } else {
+          // Fallback to static images if no data
+          setPopularPaintings([
+            { id: 'fallback-1', title: 'Street Art 1', category: 'Street Art', image_url: st1, artist_name: 'Local Artist' },
+            { id: 'fallback-2', title: 'Street Art 2', category: 'Street Art', image_url: st2, artist_name: 'Local Artist' },
+            { id: 'fallback-3', title: 'Street Art 3', category: 'Street Art', image_url: st3, artist_name: 'Local Artist' },
+          ]);
         }
 
         // Fetch visual art
         const visualResponse = await getArtworksByCategory('Digital', { limit: 4 });
-        if (visualResponse?.data) {
+        if (visualResponse?.data && visualResponse.data.length > 0) {
           setVisualArtworks(visualResponse.data);
+        } else {
+          // Fallback to static images if no data
+          setVisualArtworks([
+            { id: 'fallback-vis-1', title: 'Digital Art 1', category: 'Digital', image_url: vis1, artist_name: 'Digital Artist' },
+            { id: 'fallback-vis-2', title: 'Digital Art 2', category: 'Digital', image_url: vis2, artist_name: 'Digital Artist' },
+            { id: 'fallback-vis-3', title: 'Digital Art 3', category: 'Digital', image_url: vis3, artist_name: 'Digital Artist' },
+            { id: 'fallback-vis-4', title: 'Digital Art 4', category: 'Digital', image_url: vis4, artist_name: 'Digital Artist' },
+          ]);
         }
       } catch (error) {
         console.error("Error fetching artworks:", error);
