@@ -306,21 +306,25 @@ export default function Home() {
         
         // Fetch featured artworks (3 random artworks)
         const artworksResponse = await getAllArtworks({ limit: 3 });
+        console.log("Artworks response:", artworksResponse);
         if (artworksResponse?.data) {
           const featured = artworksResponse.data.map(artwork => ({
             image: artwork.image_url,
             caption: artwork.title || "Untitled"
           }));
+          console.log("Featured artworks:", featured);
           setFeaturedArtworks(featured);
         }
 
         // Fetch galleries for exhibition section (3 galleries)
         const galleriesResponse = await getAllGalleries({ limit: 3 });
+        console.log("Galleries response:", galleriesResponse);
         if (galleriesResponse?.data) {
           const exhibitions = galleriesResponse.data.map(gallery => ({
             image: gallery.cover_image_url,
             title: gallery.name
           }));
+          console.log("Exhibitions:", exhibitions);
           setGalleries(exhibitions);
         }
       } catch (error) {
