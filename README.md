@@ -47,10 +47,7 @@ User **TIDAK BISA**:
 ```
 ArtConnect/
 ├── backend/                       # Backend API (Express + PostgreSQL)
-├── frontend/                      # Frontend (React + Vite + TailwindCSS)
-├── QUICK_START.md                 # Quick start guide
-├── AUDIT_REPORT.md                # Bug fixes & audit report
-├── INTEGRATION_DOCUMENTATION.md   # Full integration docs
+├── frontend/                      # Frontend (React + Vi├── AUDIT_REPORT.md                # Bug fixes & audit report
 ├── DEPLOYMENT_GUIDE.md            # 🆕 Full deployment guide to Vercel
 ├── DEPLOYMENT_CHECKLIST.md        # 🆕 Step-by-step deployment checklist
 ├── QUICK_DEPLOY.md                # 🆕 Quick reference for deployment
@@ -121,9 +118,6 @@ Frontend: http://localhost:5173
 ```
 Email: john.doe@example.com
 Password: password123
-```
-
-**Lihat `QUICK_START.md` untuk petunjuk lengkap!**
 
 ---
 
