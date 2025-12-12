@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 3000
 const allowedOrigins = [
   'http://localhost:5173', // Local development
   'http://localhost:3000',
-  'https://artconnect.vercel.app', // Update with your actual frontend URL
+  'https://artconnect-frontend.vercel.app', // Frontend production URL
+  'https://artconnect-frontend-git-main-banawi-muslims-projects.vercel.app', // Git preview
   process.env.FRONTEND_URL // Add this env var in Vercel
 ].filter(Boolean)
 
