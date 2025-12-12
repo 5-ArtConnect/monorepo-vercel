@@ -160,7 +160,7 @@ export default function GallerySection() {
             {/* Center: Overlapping Art Cards */}
             <div className="w-3/4 relative h-96 flex items-center justify-center">
               {/* Card 1 - Left rotated */}
-              <div className="absolute left-12 z-10 w-60 h-72 bg-white rounded-lg shadow-2xl overflow-hidden transform -rotate-12 -translate-y-8">
+              <div className="absolute left-0 z-10 w-60 h-72 bg-white rounded-lg shadow-2xl overflow-hidden transform -rotate-12 -translate-y-8">
                 <img
                   src={hero1}
                   alt="Impressionist Art"
@@ -174,17 +174,17 @@ export default function GallerySection() {
               </div>
 
               {/* Card 3 - Right rotated */}
-              <div className="absolute right-12 z-10 w-60 h-72 bg-white rounded-lg shadow-2xl overflow-hidden transform rotate-12 -translate-y-8">
+              <div className="absolute right-0 z-10 w-60 h-72 bg-white rounded-lg shadow-2xl overflow-hidden transform rotate-12 -translate-y-8">
                 <img src={hero3} alt="The Great Wave" className="w-full h-full object-cover" />
               </div>
     
             {/* Card 4 - Far left positioned */}
-              <div className="absolute -left-20 z-5 w-52 h-60 bg-white rounded-lg shadow-lg overflow-hidden transform -rotate-6 translate-y-12 opacity-90">
+              <div className="absolute -left-40 z-5 w-52 h-60 bg-white rounded-lg shadow-lg overflow-hidden transform -rotate-3 translate-y-12 opacity-90">
                 <img src={hero4} alt="Renaissance Art" className="w-full h-full object-cover" />
               </div>
 
               {/* Card 5 - Far right positioned */}
-              <div className="absolute -right-20 z-5 w-52 h-60 bg-white rounded-lg shadow-lg overflow-hidden transform rotate-6 translate-y-12 opacity-90">
+              <div className="absolute -right-40 z-5 w-52 h-60 bg-white rounded-lg shadow-lg overflow-hidden transform rotate-3 translate-y-12 opacity-90">
                 <img src={hero5} alt="Modern Abstract" className="w-full h-full object-cover" />
               </div>
             </div>
