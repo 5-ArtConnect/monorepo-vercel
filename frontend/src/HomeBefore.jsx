@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import heroImage from "./assets/home-hero-before.png";
 
-// Artists
-import mario from "./assets/mario.jpg";
-import hanna from "./assets/hanna.jpg";
-import sejong from "./assets/sejong.jpg";
+// Import images with explicit path for Vite
+import heroImage from "./assets/home-hero-before.png?url";
+import mario from "./assets/mario.jpg?url";
+import hanna from "./assets/hanna.jpg?url";
+import sejong from "./assets/sejong.jpg?url";
+import ctaImage from "./assets/matahari.jpg?url";
 
-import ctaImage from "./assets/matahari.jpg";
 import NavbarBeforeLogin from "./components/NavbarBeforeLogin.jsx";
 import Footer from "./components/Footer.jsx";
 import { getAllArtworks } from "./services/artworks";
