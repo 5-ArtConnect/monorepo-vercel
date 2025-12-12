@@ -37,6 +37,7 @@ export default function GallerySection() {
   const [browseIndex, setBrowseIndex] = useState(0);
   const [paintingIndex, setPaintingIndex] = useState(0);
   const [visualIndex, setVisualIndex] = useState(0);
+  const [selectedArtCategory, setSelectedArtCategory] = useState('All');
   
   // State for API data
   const [artworks, setArtworks] = useState([]);
@@ -74,16 +75,25 @@ export default function GallerySection() {
   
   // Get artworks by category for carousel
   const paintingArtworks = artworks.filter(art => art.category === 'Painting' || art.category === 'Street Art');
-  const visualArtworks = artworks.filter(art => art.category === 'Visual Art' || art.category === 'Digital');
+  
+  // Filter artworks for "Our Popular of Painting Art" section based on selected category
+  const filteredArtworks = selectedArtCategory === 'All' 
+    ? artworks 
+    : artworks.filter(art => art.category === selectedArtCategory);
   
   // Use API data if available, otherwise fallback to static images
   const displayPaintings = paintingArtworks.length > 0 
     ? paintingArtworks.map(art => art.image_url) 
     : paintingImages;
     
-  const displayVisuals = visualArtworks.length > 0 
-    ? visualArtworks.map(art => art.image_url) 
+  const displayVisuals = filteredArtworks.length > 0 
+    ? filteredArtworks.map(art => art.image_url) 
     : visualImages;
+  
+  // Reset carousel index when category changes
+  useEffect(() => {
+    setVisualIndex(0);
+  }, [selectedArtCategory]);
 
   // Handle category click navigation
   const handleCategoryClick = (category) => {
@@ -183,6 +193,23 @@ export default function GallerySection() {
       <section className="w-full bg-[#463b33] text-white py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-4 text-center">Our Popular of Painting Art</h2>
+          
+          {/* Category Tabs */}
+          <div className="flex justify-center gap-4 mb-8">
+            {['All', 'Abstract', 'Digital', 'Sculpture', 'Photography', 'Street Art'].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedArtCategory(cat)}
+                className={`px-6 py-2 rounded-full transition ${
+                  selectedArtCategory === cat
+                    ? 'bg-white text-[#463b33] font-semibold'
+                    : 'bg-white bg-opacity-20 hover:bg-opacity-30'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
           
           <div className="relative">
             {/* Carousel Container */}
