@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import heroImage from "./assets/hero.jpg";
 
-// Artists
-import mario from "./assets/mario.jpg";
-import hanna from "./assets/hanna.jpg";
-import sejong from "./assets/sejong.jpg";
-
-import ctaImage from "./assets/matahari.jpg";
+// Import images with explicit path for Vite
+import heroImage from "./assets/hero.jpg?url";
+import mario from "./assets/mario.jpg?url";
+import hanna from "./assets/hanna.jpg?url";
+import sejong from "./assets/sejong.jpg?url";
+import ctaImage from "./assets/matahari.jpg?url";
 import NavbarAfterLogin from "./components/NavbarAfterLogin.jsx";
 import NavbarBeforeLogin from "./components/NavbarBeforeLogin.jsx";
 import Footer from "./components/Footer.jsx";
@@ -297,25 +296,29 @@ export default function Home() {
         
         // Fetch featured artworks (3 random artworks)
         const artworksResponse = await getAllArtworks({ limit: 3 });
+        console.log("[Home] Artworks response:", artworksResponse);
         if (artworksResponse?.data) {
           const featured = artworksResponse.data.map(artwork => ({
             image: artwork.image_url,
             caption: artwork.title || "Untitled"
           }));
+          console.log("[Home] Featured artworks:", featured);
           setFeaturedArtworks(featured);
         }
 
         // Fetch galleries for exhibition section (3 galleries)
         const galleriesResponse = await getAllGalleries({ limit: 3 });
+        console.log("[Home] Galleries response:", galleriesResponse);
         if (galleriesResponse?.data) {
           const exhibitions = galleriesResponse.data.map(gallery => ({
             image: gallery.cover_image_url,
             title: gallery.name
           }));
+          console.log("[Home] Exhibitions:", exhibitions);
           setGalleries(exhibitions);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("[Home] Error fetching data:", error);
       } finally {
         setLoading(false);
       }
