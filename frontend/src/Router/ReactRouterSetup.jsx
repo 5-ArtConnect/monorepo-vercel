@@ -96,8 +96,15 @@ export default function AppRouter() {
         }
       />
 
-      {/* Redirect old my-gallery path to new gallery */}
-      <Route path="/my-gallery" element={<Navigate to="/gallery" />} />
+      {/* My Gallery - User's favorite artworks */}
+      <Route 
+        path="/my-gallery" 
+        element={
+          <ProtectedRoute>
+            <MyGallery />
+          </ProtectedRoute>
+        } 
+      />
 
       <Route
         path="/profile"

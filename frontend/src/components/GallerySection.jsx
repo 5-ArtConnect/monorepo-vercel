@@ -16,6 +16,11 @@ import bg from "../assets/bg.png";
 // look
 import look1 from "../assets/look.png";
 
+// Category fallback images
+import imp1 from "../assets/imp1.jpg";
+import abs1 from "../assets/abs1.jpg";
+import eks1 from "../assets/eks1.jpg";
+
 export default function GallerySection() {
   const navigate = useNavigate();
   const [paintingIndex, setPaintingIndex] = useState(0);
@@ -43,17 +48,17 @@ export default function GallerySection() {
         const categories = [
           { 
             name: 'Impressionisme', 
-            image: impressionismeArt?.data?.[0]?.image_url || '',
+            image: impressionismeArt?.data?.[0]?.image_url || imp1,
             artworkId: impressionismeArt?.data?.[0]?.id 
           },
           { 
             name: 'Abstrakt', 
-            image: abstraktArt?.data?.[0]?.image_url || '',
+            image: abstraktArt?.data?.[0]?.image_url || abs1,
             artworkId: abstraktArt?.data?.[0]?.id 
           },
           { 
             name: 'Ekspressionisme', 
-            image: ekspressionismeArt?.data?.[0]?.image_url || '',
+            image: ekspressionismeArt?.data?.[0]?.image_url || eks1,
             artworkId: ekspressionismeArt?.data?.[0]?.id 
           }
         ];
@@ -168,14 +173,17 @@ export default function GallerySection() {
               onClick={() => handleCategoryClick(category.name)}
             >
               <div className="bg-gray-200 h-48 rounded overflow-hidden mb-4 group-hover:shadow-xl transition duration-300">
-                <img 
-                  src={category.image} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
-                  alt={category.name}
-                  onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
-                  }}
-                />
+                {category.image ? (
+                  <img 
+                    src={category.image} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                    alt={category.name}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gray-300">
+                    <span className="text-gray-500">No Image</span>
+                  </div>
+                )}
               </div>
               <h3 className="text-xl font-semibold text-black group-hover:text-[#463b33] transition">
                 {category.name}

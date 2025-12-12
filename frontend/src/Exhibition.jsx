@@ -13,6 +13,12 @@ import illustrationImg from "./assets/artist-illustration.png";
 import fineArtImg from "./assets/artist-fineart.png";
 import digitalArtImg from "./assets/artist-digital.png";
 
+// Featured Artists images (local)
+import featuredImg1 from "./assets/pameran1.jpg";
+import featuredImg2 from "./assets/eks1.jpg";
+import featuredImg3 from "./assets/pameran2.jpg";
+import featuredImg4 from "./assets/eks2.jpg";
+
 export default function Exhibition() {
   const navigate = useNavigate();
   
@@ -75,10 +81,10 @@ export default function Exhibition() {
   ];
 
   const featuredImages = [
-    "https://images.pexels.com/photos/460736/pexels-photo-460736.jpeg?w=600&h=600&fit=crop",
-    "https://images.pexels.com/photos/208636/pexels-photo-208636.jpeg?w=600&h=600&fit=crop",
-    "https://images.pexels.com/photos/167404/pexels-photo-167404.jpeg?w=600&h=600&fit=crop",
-    "https://images.pexels.com/photos/1907785/pexels-photo-1907785.jpeg?w=600&h=600&fit=crop",
+    featuredImg1,
+    featuredImg2,
+    featuredImg3,
+    featuredImg4,
   ];
 
   return (
