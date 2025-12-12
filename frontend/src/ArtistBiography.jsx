@@ -12,7 +12,7 @@ const ARTISTS = {
     years: "6+",
     circleLabel: "CANVAS CIRCLE",
     circleValue: "Color Studio",
-    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/artist-kim.png",
+    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/kim.png",
     heroTitle: "Discover Inspiring Voices in Visual Art",
     heroSubtitle:
       "Explore curated artworks, meet talented artists, and immerse yourself in a world of contemporary visual expression.",
@@ -27,7 +27,7 @@ const ARTISTS = {
     years: "5+",
     circleLabel: "CANVAS CIRCLE",
     circleValue: "Silent Frame Studio",
-    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/artist-ayla.png",
+    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/ayla.png",
     heroTitle: "Quiet Emotions on Canvas",
     heroSubtitle:
       "Minimalist brushstrokes, subtle palettes, and soft compositions that communicate deep emotion.",
@@ -42,7 +42,7 @@ const ARTISTS = {
     years: "7+",
     circleLabel: "CONCEPT LAB",
     circleValue: "Pixel Path Studio",
-    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/artist-marco.png",
+    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/marco.png",
     heroTitle: "Concepts That Build Worlds",
     heroSubtitle:
       "From character design to full environments, Marco creates visual narratives for modern stories.",
@@ -57,7 +57,7 @@ const ARTISTS = {
     years: "4+",
     circleLabel: "SURREAL SPACE",
     circleValue: "Midnight Canvas",
-    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/artist-rose.png",
+    profileImage: "https://res.cloudinary.com/dqoit6ruy/image/upload/v1765469869/artconnect/artists/rose.png",
     heroTitle: "Surreal Dreams & Portrait Stories",
     heroSubtitle:
       "Blending reality and imagination through layered compositions and emotional portraiture.",
