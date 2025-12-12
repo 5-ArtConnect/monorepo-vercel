@@ -31,6 +31,23 @@ app.use(cors({
   credentials: true
 }))
 app.use(morgan('dev'))
+
+// Root route for health check
+app.get('/', (req, res) => {
+  res.json({
+    message: 'ArtConnect API is running',
+    status: 'success',
+    endpoints: {
+      users: '/api/users',
+      artworks: '/api/artworks',
+      galleries: '/api/galleries',
+      comments: '/api/comments',
+      likes: '/api/likes',
+      favorites: '/api/favorites'
+    }
+  })
+})
+
 app.use('/api', mainRouter)
 app.use('/img', express.static('src/upload'))
 app.all('*', (req, res, next) => {
