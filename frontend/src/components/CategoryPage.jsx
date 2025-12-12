@@ -280,7 +280,7 @@ export default function CategoryPage() {
                     key={artwork.id} 
                 className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                <div className="h-64 overflow-hidden">
+                <div className="h-96 overflow-hidden">
                   <img 
                     src={artwork.image_url || imp1} 
                     alt={artwork.title}
