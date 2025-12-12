@@ -1,13 +1,28 @@
 // src/components/NavbarBeforeLogin.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function NavbarBeforeLogin() {
   const [openMenu, setOpenMenu] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const menuRef = useRef(null);
 
   const isHomeActive = location.pathname === "/homebefore";
+
+  // Close menu saat scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (openMenu) setOpenMenu(false);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [openMenu]);
+
+  // Close menu saat route change
+  useEffect(() => {
+    setOpenMenu(false);
+  }, [location]);
 
   // semua menu selain Home diarahkan ke halaman login
   const goToLogin = () => {

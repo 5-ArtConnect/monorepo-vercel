@@ -1,5 +1,5 @@
 // src/components/NavbarAfterLogin.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import UserPopUp from "./UserPopUp";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -13,9 +13,41 @@ export default function NavbarAfterLogin({
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const menuRef = useRef(null);
   
   // Get username from AuthContext, fallback to "User"
   const username = user?.username || user?.fullname || "User";
+
+  // Close menu saat scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (openMenu) setOpenMenu(false);
+      if (openProfile) setOpenProfile(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [openMenu, openProfile]);
+
+  // Close menu saat route change
+  useEffect(() => {
+    setOpenMenu(false);
+    setOpenProfile(false);
+  }, [location]);
+
+  // Close menu saat click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenMenu(false);
+      }
+    };
+
+    if (openMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [openMenu]);
 
   // class untuk NavLink biar ada indikasi active
   const navLinkClass = ({ isActive }) =>
@@ -138,27 +170,44 @@ export default function NavbarAfterLogin({
 
       {/* ===== MOBILE MENU DROPDOWN ===== */}
       <div
+        ref={menuRef}
         className={`
           md:hidden bg-white border-t shadow-sm overflow-hidden
-          transition-all duration-300
+          transition-all duration-300 relative
           ${openMenu ? "max-h-96 py-5" : "max-h-0"}
         `}
       >
         <div className="flex flex-col gap-4 px-6 text-[#1b1b1b] text-sm sm:text-base">
           {/* gunakan same route paths & highlight logic jika perlu */}
-          <NavLink to="/" className={({ isActive }) => isActive ? "font-semibold" : ""}>
+          <NavLink 
+            to="/" 
+            className={({ isActive }) => isActive ? "font-semibold" : ""}
+            onClick={() => setOpenMenu(false)}
+          >
             Home
           </NavLink>
 
-          <Link to="/gallery" className={galleryLinkClass()}>
+          <Link 
+            to="/gallery" 
+            className={galleryLinkClass()}
+            onClick={() => setOpenMenu(false)}
+          >
             Gallery Art
           </Link>
 
-          <NavLink to="/exhibition" className={({ isActive }) => isActive ? "font-semibold" : ""}>
+          <NavLink 
+            to="/exhibition" 
+            className={({ isActive }) => isActive ? "font-semibold" : ""}
+            onClick={() => setOpenMenu(false)}
+          >
             Artist
           </NavLink>
 
-          <Link to="/community" className={communityLinkClass()}>
+          <Link 
+            to="/community" 
+            className={communityLinkClass()}
+            onClick={() => setOpenMenu(false)}
+          >
             Community
           </Link>
         </div>

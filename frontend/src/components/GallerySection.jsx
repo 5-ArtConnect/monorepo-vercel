@@ -137,13 +137,26 @@ export default function GallerySection() {
       <main className="flex-1 w-full pt-16">
       {/* Hero Section */}
       <section 
-        className="w-full text-white py-24 bg-cover bg-center bg-no-repeat relative min-h-screen"
+        className="w-full text-white py-12 md:py-24 bg-cover bg-center bg-no-repeat relative min-h-[60vh] md:min-h-screen"
         style={{ backgroundImage: `url(${bg})` }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         <div className="max-w-7xl mx-auto px-4 relative z-10 h-full flex flex-col justify-center">
-          <div className="flex items-center justify-center gap-12 mb-8">
+          
+          {/* Mobile: Simple Stack */}
+          <div className="md:hidden flex flex-col items-center gap-4">
+            <div className="w-64 h-80 bg-white rounded-lg shadow-2xl overflow-hidden">
+              <img src={hero2} alt="Gallery Art" className="w-full h-full object-cover" />
+            </div>
+            <div className="text-center mt-6">
+              <p className="text-xl text-gray-200 italic font-bold px-4">
+                Step into a visual journey shaped by imagination and emotion
+              </p>
+            </div>
+          </div>
 
+          {/* Desktop: Overlapping Cards */}
+          <div className="hidden md:flex items-center justify-center gap-12 mb-8">
             {/* Center: Overlapping Art Cards */}
             <div className="w-3/4 relative h-96 flex items-center justify-center">
               {/* Card 1 - Left rotated */}
@@ -177,8 +190,8 @@ export default function GallerySection() {
             </div>
           </div>
 
-          {/* Tagline */}
-          <div className="text-center mt-24">
+          {/* Tagline - Desktop only */}
+          <div className="hidden md:block text-center mt-24">
             <p className="text-3xl text-gray-300 italic font-bold max-w-5xl mx-auto">
               Step into a visual journey shaped by imagination and emotion
             </p>
@@ -187,9 +200,9 @@ export default function GallerySection() {
       </section>
 
       {/* Browse by Category Section */}
-      <section className="w-full py-16 px-4 bg-white">
+      <section className="w-full py-8 md:py-16 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center text-black">Browse by Category</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-12 text-center text-black">Browse by Category</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {browseCategories.map((category, index) => (
@@ -223,9 +236,9 @@ export default function GallerySection() {
       {/* Painting Art Section */}
       <section className="w-full">
         {/* Header with brown background */}
-        <div className="w-full bg-[#463b33] text-white py-8 px-4">
+        <div className="w-full bg-[#463b33] text-white py-6 md:py-8 px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center">Our Popular of Painting Art</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-center">Our Popular of Painting Art</h2>
           </div>
         </div>
         {/* Content with white background */}
@@ -261,20 +274,20 @@ export default function GallerySection() {
       </section>
 
       {/* Latest Posted Visual Art Section */}
-      <section className="w-full bg-[#463b33] text-white py-16 px-4">
+      <section className="w-full bg-[#463b33] text-white py-8 md:py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-4 text-center">Our Latest Posted Visual Art</h2>
-          <p className="text-gray-400 mb-12 text-center">
+          <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4 text-center">Our Latest Posted Visual Art</h2>
+          <p className="text-gray-400 text-sm md:text-base mb-6 md:mb-12 text-center px-4">
             The latest work from the newly born creators of inspiring visuals, ready to touch and invite you to rethink about beauty.
           </p>
           
           {visualArtworks.length > 0 && (
-            <div className="relative">
+            <div className="relative px-2 md:px-0">
               {/* Carousel Container */}
               <div className="flex justify-center items-center">
                 <div className="w-full max-w-lg">
                   <div 
-                    className="h-96 rounded-lg overflow-hidden shadow-xl cursor-pointer"
+                    className="h-64 md:h-96 rounded-lg overflow-hidden shadow-xl cursor-pointer"
                     onClick={() => navigate(`/category/${visualArtworks[visualIndex].category.toLowerCase()}/artwork/${visualArtworks[visualIndex].id}`)}
                   >
                     <img 
@@ -287,8 +300,8 @@ export default function GallerySection() {
                     />
                   </div>
                   <div className="text-center mt-4">
-                    <h3 className="text-xl font-bold">{visualArtworks[visualIndex].title}</h3>
-                    <p className="text-gray-300">{visualArtworks[visualIndex].artist_name || 'Unknown Artist'}</p>
+                    <h3 className="text-lg md:text-xl font-bold">{visualArtworks[visualIndex].title}</h3>
+                    <p className="text-gray-300 text-sm md:text-base">{visualArtworks[visualIndex].artist_name || 'Unknown Artist'}</p>
                   </div>
                 </div>
               </div>
@@ -296,13 +309,13 @@ export default function GallerySection() {
               {/* Navigation Buttons */}
               <button 
                 onClick={prevVisual}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-3 rounded-full hover:bg-opacity-40 transition"
+                className="absolute left-0 md:left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-2 md:p-3 rounded-full hover:bg-opacity-40 transition text-sm md:text-base"
               >
                 ←
               </button>
               <button 
                 onClick={nextVisual}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-3 rounded-full hover:bg-opacity-40 transition"
+                className="absolute right-0 md:right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 text-white p-2 md:p-3 rounded-full hover:bg-opacity-40 transition text-sm md:text-base"
               >
                 →
               </button>
@@ -325,23 +338,23 @@ export default function GallerySection() {
       </section>
 
       {/* Looking for Art Section */}
-      <section className="w-full py-16 px-4 bg-white">
+      <section className="w-full py-8 md:py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="flex justify-center">
-              <div className="h-80 w-80 rounded overflow-hidden shadow-xl">
+            <div className="flex justify-center order-2 md:order-1">
+              <div className="h-64 w-64 md:h-80 md:w-80 rounded overflow-hidden shadow-xl">
                 <img src={look1} alt="Art Collection" className="w-full h-full object-cover" />
               </div>
             </div>
-            <div className="text-left">
-              <h2 className="text-4xl font-bold mb-8 text-center text-black">Our Looking for Art</h2>
-              <p className="text-white-700 mb-6 text-black">
+            <div className="text-center md:text-left order-1 md:order-2">
+              <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8 text-black">Our Looking for Art</h2>
+              <p className="text-gray-700 mb-4 md:mb-6 text-sm md:text-base px-4 md:px-0">
                 Explore the work of artists with unique characters and styles that enrich the world of contemporary art.
               </p>
-              <div className="flex justify-end">
+              <div className="flex justify-center md:justify-end">
                 <button 
                   onClick={() => navigate('/exhibition')}
-                  className="bg-[#463b33] text-white px-8 py-4 rounded hover:bg-[#5a4a42] transition"
+                  className="bg-[#463b33] text-white px-6 md:px-8 py-3 md:py-4 rounded hover:bg-[#5a4a42] transition text-sm md:text-base"
                 >
                   See More
                 </button>

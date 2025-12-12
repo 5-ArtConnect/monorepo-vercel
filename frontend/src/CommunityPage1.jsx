@@ -140,12 +140,20 @@ function TopArtCarousel({ items = [] }) {
 
       <div
         ref={listRef}
-        className="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth -mx-4 px-4"
+        className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth -mx-2 md:-mx-4 px-2 md:px-4"
         role="list"
       >
         {items.map((it) => (
-          <div key={it.id} role="listitem" className="flex-shrink-0 w-[70vw] sm:w-[44vw] md:w-[33vw] lg:w-[28%] xl:w-[22%] snap-start">
-            <img src={it.image} alt={it.title} className="w-full h-48 md:h-64 object-cover rounded-lg shadow-lg" draggable="false" />
+          <div key={it.id} role="listitem" className="flex-shrink-0 w-[240px] sm:w-[280px] md:w-[320px] lg:w-[28%] xl:w-[22%] snap-start">
+            <img 
+              src={it.image} 
+              alt={it.title} 
+              className="w-full h-48 md:h-64 object-cover rounded-lg shadow-lg" 
+              draggable="false"
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
+              }}
+            />
           </div>
         ))}
       </div>
