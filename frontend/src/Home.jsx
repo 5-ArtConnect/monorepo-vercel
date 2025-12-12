@@ -295,10 +295,11 @@ export default function Home() {
         setLoading(true);
         
         // Fetch featured artworks (3 random artworks)
+        // API wrapper already extracts data, response is directly an array
         const artworksResponse = await getAllArtworks({ limit: 3 });
         console.log("[Home] Artworks response:", artworksResponse);
-        if (artworksResponse?.data) {
-          const featured = artworksResponse.data.map(artwork => ({
+        if (Array.isArray(artworksResponse)) {
+          const featured = artworksResponse.map(artwork => ({
             image: artwork.image_url,
             caption: artwork.title || "Untitled"
           }));
@@ -309,8 +310,8 @@ export default function Home() {
         // Fetch galleries for exhibition section (3 galleries)
         const galleriesResponse = await getAllGalleries({ limit: 3 });
         console.log("[Home] Galleries response:", galleriesResponse);
-        if (galleriesResponse?.data) {
-          const exhibitions = galleriesResponse.data.map(gallery => ({
+        if (Array.isArray(galleriesResponse)) {
+          const exhibitions = galleriesResponse.map(gallery => ({
             image: gallery.cover_image_url,
             title: gallery.name
           }));
