@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "artconnect-api-2024",
-		"name": "ArtConnect API - Viewer & Artist Role",
-		"description": "ArtConnect Backend API\n\nFeatures:\n- Users can only browse/view galleries and exhibitions\n- Users can upload, edit, delete their own artworks\n- Comment & Like feedback system only (no favorites)\n- No search feature - use category filters on GET endpoints\n- Total Endpoints: 27\n\nAuthentication: Bearer Token (JWT)",
+		"name": "ArtConnect API - View Only",
+		"description": "ArtConnect Backend API\n\nFeatures:\n- Users can browse/view galleries (view only)\n- Users can browse/view artworks (view only)\n- Comment, Like & Favorites system\n- No search feature - use category filters on GET endpoints\n- Total Endpoints: 19\n\nAuthentication: Bearer Token (JWT)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "artconnect-2024"
 	},
@@ -220,147 +220,9 @@
 			]
 		},
 		{
-			"name": "3. Browse Exhibitions (View Only)",
-			"description": "Browse and view exhibitions - users cannot create/edit/delete",
+			"name": "3. Browse Artworks (View Only)",
+			"description": "Browse and view artworks - users cannot create/edit/delete",
 			"item": [
-				{
-					"name": "Get All Exhibitions",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/exhibitions?page=1&limit=10&status=ongoing",
-							"host": ["{{base_url}}"],
-							"path": ["exhibitions"],
-							"query": [
-								{"key": "page", "value": "1"},
-								{"key": "limit", "value": "10"},
-								{"key": "status", "value": "ongoing"}
-							]
-						},
-						"description": "Browse all exhibitions with pagination (status: upcoming/ongoing/past)"
-					}
-				},
-				{
-					"name": "Get Exhibition Detail",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/exhibitions/{{exhibitionId}}",
-							"host": ["{{base_url}}"],
-							"path": ["exhibitions", "{{exhibitionId}}"]
-						},
-						"description": "Get specific exhibition details"
-					}
-				},
-				{
-					"name": "Get Exhibition Artworks",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/exhibitions/{{exhibitionId}}/artworks?page=1&limit=20",
-							"host": ["{{base_url}}"],
-							"path": ["exhibitions", "{{exhibitionId}}", "artworks"],
-							"query": [
-								{"key": "page", "value": "1"},
-								{"key": "limit", "value": "20"}
-							]
-						},
-						"description": "Get all artworks in a specific exhibition"
-					}
-				}
-			]
-		},
-		{
-			"name": "4. Browse Artists/Users",
-			"description": "Browse and view artist profiles and portfolios",
-			"item": [
-				{
-					"name": "Get All Users/Artists",
-					"request": {
-						"method": "GET",
-						"header": [
-							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
-						],
-						"url": {
-							"raw": "{{base_url}}/users?page=1&limit=10",
-							"host": ["{{base_url}}"],
-							"path": ["users"],
-							"query": [
-								{"key": "page", "value": "1"},
-								{"key": "limit", "value": "10"}
-							]
-						},
-						"description": "Get list of all users/artists"
-					}
-				},
-				{
-					"name": "Get Artist Galleries",
-					"request": {
-						"method": "GET",
-						"header": [
-							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
-						],
-						"url": {
-							"raw": "{{base_url}}/users/{{userId}}/galleries",
-							"host": ["{{base_url}}"],
-							"path": ["users", "{{userId}}", "galleries"]
-						},
-						"description": "Get all galleries owned by a specific artist"
-					}
-				},
-				{
-					"name": "Get Artist Exhibitions",
-					"request": {
-						"method": "GET",
-						"header": [
-							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
-						],
-						"url": {
-							"raw": "{{base_url}}/users/{{userId}}/exhibitions",
-							"host": ["{{base_url}}"],
-							"path": ["users", "{{userId}}", "exhibitions"]
-						},
-						"description": "Get all exhibitions organized by a specific artist"
-					}
-				}
-			]
-		},
-		{
-			"name": "5. Artworks Management",
-			"description": "Users can upload, view, edit, and delete their own artworks",
-			"item": [
-				{
-					"name": "Upload Artwork",
-					"request": {
-						"method": "POST",
-						"header": [
-							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{"key": "gallery_id", "value": "{{galleryId}}", "type": "text"},
-								{"key": "title", "value": "Sunset Painting", "type": "text"},
-								{"key": "description", "value": "Beautiful sunset landscape", "type": "text"},
-								{"key": "category", "value": "Painting", "type": "text"},
-								{"key": "medium", "value": "Oil on Canvas", "type": "text"},
-								{"key": "dimensions", "value": "50x70cm", "type": "text"},
-								{"key": "price", "value": "1500000", "type": "text"},
-								{"key": "is_for_sale", "value": "true", "type": "text"},
-								{"key": "image", "value": "@/path/to/image.jpg", "type": "file"}
-							]
-						},
-						"url": {
-							"raw": "{{base_url}}/artworks",
-							"host": ["{{base_url}}"],
-							"path": ["artworks"]
-						},
-						"description": "Upload new artwork to gallery"
-					}
-				},
 				{
 					"name": "Get All Artworks",
 					"request": {
@@ -391,46 +253,11 @@
 						},
 						"description": "Get specific artwork details"
 					}
-				},
-				{
-					"name": "Update Artwork",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{"key": "Authorization", "value": "Bearer {{accessToken}}"},
-							{"key": "Content-Type", "value": "application/json"}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"title\": \"Updated Title\",\"description\": \"Updated description\",\"price\": 2000000}"
-						},
-						"url": {
-							"raw": "{{base_url}}/artworks/{{artworkId}}",
-							"host": ["{{base_url}}"],
-							"path": ["artworks", "{{artworkId}}"]
-						},
-						"description": "Update own artwork (only owner)"
-					}
-				},
-				{
-					"name": "Delete Artwork",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
-						],
-						"url": {
-							"raw": "{{base_url}}/artworks/{{artworkId}}",
-							"host": ["{{base_url}}"],
-							"path": ["artworks", "{{artworkId}}"]
-						},
-						"description": "Delete own artwork"
-					}
 				}
 			]
 		},
 		{
-			"name": "6. Comments (Feedback)",
+			"name": "4. Comments (Feedback)",
 			"description": "Users can comment on artworks for feedback",
 			"item": [
 				{
@@ -471,6 +298,39 @@
 					}
 				},
 				{
+					"name": "Get Average Rating",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/artworks/{{artworkId}}/rating",
+							"host": ["{{base_url}}"],
+							"path": ["artworks", "{{artworkId}}", "rating"]
+						},
+						"description": "Get average rating for artwork"
+					}
+				},
+				{
+					"name": "Add Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Authorization", "value": "Bearer {{accessToken}}"},
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"text\": \"Amazing artwork!\",\"rating\": 5}"
+						},
+						"url": {
+							"raw": "{{base_url}}/artworks/{{artworkId}}/comments",
+							"host": ["{{base_url}}"],
+							"path": ["artworks", "{{artworkId}}", "comments"]
+						},
+						"description": "Add comment on artwork with rating (1-5)"
+					}
+				},
+				{
 					"name": "Update Comment",
 					"request": {
 						"method": "PUT",
@@ -508,7 +368,7 @@
 			]
 		},
 		{
-			"name": "7. Likes (Feedback)",
+			"name": "5. Likes (Feedback)",
 			"description": "Users can like/unlike artworks and comments",
 			"item": [
 				{
@@ -572,6 +432,57 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "6. Favorites (My Gallery)",
+			"description": "Users can save artworks to their favorites (My Gallery)",
+			"item": [
+				{
+					"name": "Add to Favorites",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
+						],
+						"url": {
+							"raw": "{{base_url}}/artworks/{{artworkId}}/favorite",
+							"host": ["{{base_url}}"],
+							"path": ["artworks", "{{artworkId}}", "favorite"]
+						},
+						"description": "Add artwork to favorites"
+					}
+				},
+				{
+					"name": "Remove from Favorites",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
+						],
+						"url": {
+							"raw": "{{base_url}}/artworks/{{artworkId}}/favorite",
+							"host": ["{{base_url}}"],
+							"path": ["artworks", "{{artworkId}}", "favorite"]
+						},
+						"description": "Remove artwork from favorites"
+					}
+				},
+				{
+					"name": "Get User Favorites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{"key": "Authorization", "value": "Bearer {{accessToken}}"}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/{{userId}}/favorites",
+							"host": ["{{base_url}}"],
+							"path": ["users", "{{userId}}", "favorites"]
+						},
+						"description": "Get all favorite artworks (My Gallery)"
+					}
+				}
+			]
 		}
 	],
 	"variable": [
@@ -581,7 +492,6 @@
 		{"key": "userId", "value": "", "type": "string"},
 		{"key": "galleryId", "value": "", "type": "string"},
 		{"key": "artworkId", "value": "", "type": "string"},
-		{"key": "exhibitionId", "value": "", "type": "string"},
 		{"key": "commentId", "value": "", "type": "string"}
 	]
 }
